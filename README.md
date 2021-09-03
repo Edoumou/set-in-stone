@@ -66,6 +66,7 @@ struct VPool {
  //====================================
  struct Card {
         address creator    // l'adresse de l'utilisateur qui a créé la carte
+        string cardID;
         bool created;
         string position;   // or uint256
         string firstname;
@@ -78,10 +79,48 @@ struct VPool {
         uint256 speed;     // vitesse
         uint256 level;     // level
         uint256 amount;    // le montant à payer pour ouvrir un booster
-        uint256 OpenMode;  // 0 quand la carte est créée via un échange, et 1 quand elle créée en ouvrant un booster
+        uint256 openMode;  // 0 quand la carte est créée via un échange, et 1 quand elle créée en ouvrant un booster
     }
 ```
-Other properties can be added to the Card structure in case they are necessary. To create a new Card, one needs to create a function, similar to the _*RegisterOrJoinPool*_ in  _*PoolGame.sol*_ smart contract (line 88). It takes two parameters, the VPool ID (string) and an amount of token that is necessary to join the VPool. In the case of the Rugby game, the _*CreateCard*_ function can take same parameteres (Card ID, amount to pay to open a booster), plus all properties that need to be defined at Card creation.
+Other properties can be added to the Card structure in case they are necessary. To create a new Card, one needs to create a function, similar to the _*RegisterOrJoinPool*_ in  _*PoolGame.sol*_ smart contract (line 88). It takes two parameters, the VPool ID (string) and an amount of tokens that is necessary to join the VPool. In the case of the Rugby game, the _*CreateCard*_ function can take same parameteres (Card ID, amount to pay to open a booster), plus all properties that need to be defined at Card creation.
+
+```solidity
+// CreateCard.sol
+function CreateCard(
+        string  _CardID,
+        uint256 _amount,
+        string _position,
+        string firstname,
+        string _lastname,
+        string _club,
+        string _scarcity,
+        string _season,
+        uint256 _strength,
+        uint256 _endurance,
+        uint256 _speed,
+        uint256 level,
+        uint256 _openMode
+) public {
+        // here I supposed there exists a mapping between an address (user address) and the Card structure
+        // mapping(address => Card) internal cards;
+        
+        cards[msg.sender].creator = msg.sender;
+        cards[msg.sender].cardID = _CardID;
+        cards[msg.sender].created = true;
+        cards[msg.sender].position = _position;
+        cards[msg.sender].firstname = _firstname;
+        cards[msg.sender].lastname = _lastname;
+        cards[msg.sender].club = _club;
+        cards[msg.sender].scarcity = _scarcity;
+        cards[msg.sender].season = _season;
+        cards[msg.sender].strength = _strength;
+        cards[msg.sender].endurance = _endurance;
+        cards[msg.sender].speed = _speed;
+        cards[msg.sender].level = _level;
+        cards[msg.sender].amount = _amount;
+        cards[msg.sender].OpenMode = _openMode;
+    }
+```
 
 
 
