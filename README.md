@@ -61,7 +61,9 @@ struct VPool {
         mapping(address => bool) userWithdrawed;
     }
     
- // Card structure
+ //====================================
+ //           CARD STRUCTURE
+ //====================================
  struct Card {
         bool created;
         string position;  // or uint256
