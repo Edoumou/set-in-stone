@@ -174,6 +174,7 @@ contract PoolGame is ERC20("Wait And Win", "WAW"), Owned {
         users[msg.sender].userVotes.push(_vote);
     }
 
+    // This function allows to generate an array of not eqaual random numbers
     function rankDistribution(
         string memory _poolID,
         uint256[] memory _initialTab
