@@ -170,6 +170,11 @@ _initialTab[3] = 4;
 _initialTab[4] = 5;
 ```
 
+## Video (random numbers generator)
+
+This video shows the generation of random numbers by using the function _*randomNumbersGerator*_ define above.
+
+[![Alternate Text]({image-url})]({https://youtu.be/oarR6yuxyyE} "Random number generator")
 
 
 
