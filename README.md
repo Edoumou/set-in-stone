@@ -68,12 +68,14 @@ struct VPool {
         string firstname;
         string lastname;
         string club;
+        string scarcity;  // rareté
+        string season;    // saison
         uint256 strength; // Force
         uint256 endurance;
         uint256 speed;    // vitesse
-        string scarcity;  // rareté
         uint256 level;    // level
-        string season;    // saison
+        uint256 amount;    // le montant à payer pour ouvrir un booster
+        uint256 OpenMode;  // 0 quand la carte est créée via un échange, et 1 quand elle créée en ouvrant un booster
     }
 ```
 
