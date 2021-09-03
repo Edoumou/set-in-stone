@@ -65,21 +65,23 @@ struct VPool {
  //           CARD STRUCTURE
  //====================================
  struct Card {
+        address creator    // l'adresse de l'utilisateur qui a créé la carte
         bool created;
-        string position;  // or uint256
+        string position;   // or uint256
         string firstname;
         string lastname;
         string club;
-        string scarcity;  // rareté
-        string season;    // saison
-        uint256 strength; // Force
+        string scarcity;   // rareté
+        string season;     // saison
+        uint256 strength;  // Force
         uint256 endurance;
-        uint256 speed;    // vitesse
-        uint256 level;    // level
+        uint256 speed;     // vitesse
+        uint256 level;     // level
         uint256 amount;    // le montant à payer pour ouvrir un booster
         uint256 OpenMode;  // 0 quand la carte est créée via un échange, et 1 quand elle créée en ouvrant un booster
     }
 ```
+Other properties can be added to the Card structure in case they are necessary. To create a new Card, one needs to create a function, similar to the _*RegisterOrJoinPool*_ in  _*PoolGame.sol*_ smart contract (line 88). It takes two parameters, the VPool ID (string) and an amount of token that is necessary to join the VPool. In the case of the Rugby game, the _*CreateCard*_ function can take same parameteres (Card ID, amount to pay to open a booster), plus all properties that need to be defined at Card creation.
 
 
 
