@@ -8,7 +8,7 @@ import "./ERC20/Owned.sol";
 * Written by Samuel Gwlanold Ongala
 */
 
-contract WaitAndWin is ERC20("Wait And Win", "WAW"), Owned {
+contract PoolGame is ERC20("Wait And Win", "WAW"), Owned {
     struct VPool {
         bool registered;
         string ID;
