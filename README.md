@@ -8,7 +8,7 @@ To Thomas,
 
 # Minting NFTs (ERC721 tokens)
 
-ERC721 is a standard interface for non-fungible tokens (NFT). It defines an Interface that must be imported and defined in a contract which allows minting NFTs. The interface can be found here [[ERC721 interface]](https://eips.ethereum.org/EIPS/eip-721)
+ERC721 is a standard interface for non-fungible tokens (NFT). It defines an Interface that must be imported and defined in a contract which allows minting NFTs. The interface can be found here [[ERC721 interface]](https://eips.ethereum.org/EIPS/eip-721). In the NFT.sol contract that I proposed, the openzeppelin library has been used, which provides a ready to use ERC721 interface, this openzeppelin interface can be found here [[ERC721 interface, openzeppelin]](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol).
 
 
 
