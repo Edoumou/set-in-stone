@@ -130,7 +130,7 @@ The generation of random number in solidity is active field of research. Two sol
 
 ```solidity
 // generates an array of random numbers
-function randomNumbersGerator(
+    function randomNumbersGerator(
         string memory _cardID,
         uint256[] memory _initialTab
     ) public view returns (uint256[] memory) {
@@ -143,7 +143,7 @@ function randomNumbersGerator(
         // be aware that block.timestamp can be alter by miners.
         for (uint256 i = 0; i < k; i++) {
             uint256 randNum = (uint256(
-                keccak256(abi.encodePacked(block.timestamp, _cardlID, _initialTab[i]))
+                keccak256(abi.encodePacked(block.timestamp, _cardID, _initialTab[i]))
             ) % p) + 1;
 
             uint256 tmp = _initialTab[randNum - 1];
