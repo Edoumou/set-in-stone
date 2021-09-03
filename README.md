@@ -73,7 +73,7 @@ struct VPool {
         string lastname;
         string club;
         string scarcity;   // rareté
-        string season;     // saison
+        uint256 season;    // saison
         uint256 strength;  // Force
         uint256 endurance;
         uint256 speed;     // vitesse
@@ -94,7 +94,7 @@ function CreateCard(
         string _lastname,
         string _club,
         string _scarcity,
-        string _season,
+        uint256 _season,
         uint256 _strength,
         uint256 _endurance,
         uint256 _speed,
@@ -103,6 +103,8 @@ function CreateCard(
 ) public {
         // here I supposed there exists a mapping between an address (user address) and the Card structure
         // mapping(address => Card) internal cards;
+        
+        // Define all the requires here (for example the Card must not be registered, etc...) 
         
         cards[msg.sender].creator = msg.sender;
         cards[msg.sender].cardID = _CardID;
@@ -121,6 +123,45 @@ function CreateCard(
         cards[msg.sender].OpenMode = _openMode;
     }
 ```
+
+## Random number generator
+
+The generation of random number in solidity is active field of research. Two solutions are proposed in this demo, the first one consists of using the _*ChainLink Verifiable Random Function*_ to generate a random number ([[ERC721 interface]](https://docs.chain.link/docs/chainlink-vrf/#:~:text=Chainlink%20VRF%20(Verifiable%20Random%20Function,Blockchain%20games%20and%20NFTs)), this requires filling the contract with Link tokens and requiring the user that call the contract to have somre Link tokens in their wallets. The second method that I proposed and that is implemented in my Pool game is to define a function _*randDistribution*_ in the smart contract that generate a random number. To avoid paying gas fees when calling this function, no state variable must be modified inside the function, therefore, this must be a view function that return a random number. Let's suppose one needs to generate N distinct random numbers, the following function allows to accomplish that task.
+
+```solidity
+// generates an array of random numbers
+function randomNumbersGerator(
+        string memory _cardID,
+        uint256[] memory _initialTab
+    ) public view returns (uint256[] memory) {
+        // all requires must be set here
+
+        uint256 p = _initialTab.length;
+        uint256 k = _initialTab.length;
+
+        // generate random numbers
+        // be aware that block.timestamp can be alter by miners.
+        for (uint256 i = 0; i < k; i++) {
+            uint256 randNum = (uint256(
+                keccak256(abi.encodePacked(block.timestamp, _cardlID, _initialTab[i]))
+            ) % p) + 1;
+
+            uint256 tmp = _initialTab[randNum - 1];
+            _initialTab[randNum - 1] = _initialTab[p - 1];
+            _initialTab[p - 1] = tmp;
+            p = p - 1;
+        }
+
+        uint256[] memory res;
+        res = _initialTab;
+
+        return res;
+    }
+```
+
+The above function generate an array of distinct random number, the length of this array is equal to the length of the initial array given as parameter. The _*_initialTab*_ array must be constructed such that to have 1 at index 0, 2 at index 1, 3 at index 2, ...., N at index N - 1. Where _*N*_ is the number of random number one would like to generate.
+
+
 
 
 
