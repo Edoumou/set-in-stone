@@ -126,10 +126,10 @@ function CreateCard(
 
 ## Random number generator
 
-The generation of random number in solidity is active field of research. Two solutions are proposed in this demo, the first one consists of using the _*ChainLink Verifiable Random Function*_ to generate a random number ([[ERC721 interface]](https://docs.chain.link/docs/chainlink-vrf/#:~:text=Chainlink%20VRF%20(Verifiable%20Random%20Function,Blockchain%20games%20and%20NFTs)), this requires filling the contract with Link tokens and requiring the user that call the contract to have somre Link tokens in their wallets. The second method that I proposed and that is implemented in my Pool game is to define a function _*randDistribution*_ in the smart contract that generate a random number. To avoid paying gas fees when calling this function, no state variable must be modified inside the function, therefore, this must be a view function that return a random number. Let's suppose one needs to generate N distinct random numbers, the following function allows to accomplish that task.
+The generation of random number in solidity is active field of research. Two solutions are proposed in this demo, the first one consists of using the _*ChainLink Verifiable Random Function*_ to generate a random number ([[ERC721 interface]](https://docs.chain.link/docs/chainlink-vrf/#:~:text=Chainlink%20VRF%20(Verifiable%20Random%20Function,Blockchain%20games%20and%20NFTs)), this requires filling the contract with Link tokens and requiring the user that call the contract to have somre Link tokens in their wallets. The second method that I proposed and that is implemented in my Pool game is to define a function _*randDistribution*_ in the smart contract that generates a random number. To avoid paying gas fees when calling this function, no state variable must be modified inside the function, therefore, this must be a view function that return a random number. Let's suppose one needs to generate N distinct random numbers, the following function allows to accomplish that task.
 
 ```solidity
-// generates an array of random numbers
+// generates an array of random numbers between 1 and the length of the array
     function randomNumbersGerator(
         string memory _cardID,
         uint256[] memory _initialTab
@@ -159,7 +159,7 @@ The generation of random number in solidity is active field of research. Two sol
     }
 ```
 
-The above function generates an array of distinct random numbers, the length of this array is equal to the length of the initial array given as parameter. The _*_initialTab*_ array must be constructed such that to have 1 at index 0, 2 at index 1, 3 at index 2, ...., N at index N - 1. Where _*N*_ is the number of random number one would like to generate.
+The above function generates an array of distinct random numbers, the length of this array is equal to the length of the initial array given as parameter. The _*_initialTab*_ array must be constructed such that to have 1 at index 0, 2 at index 1, 3 at index 2, ...., N at index N - 1. Where _*N*_ is the number of random number one would like to generate. The random numbers generated are in the range 1 - N.
 
 ```solidity
 // the _initialTab for generating 5 random numbers
