@@ -8,7 +8,36 @@ To Thomas,
 
 # Minting NFTs (ERC721 tokens)
 
-ERC721 is a standard interface for non-fungible tokens (NFT). It defines an Interface that must be imported and defined in a contract which allows minting NFTs. The interface can be found here [[ERC721 interface]](https://eips.ethereum.org/EIPS/eip-721). In the __*NFT.sol*__ contract that I proposed, the openzeppelin library has been used, which provides a ready to use ERC721 interface, this openzeppelin interface can be found here [[ERC721 interface, openzeppelin]](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol). One then needs to define our function that allows to trigger all operations needed when minting the NFT, this is the _*mintImage*_ function defined in line 43 of __*NFT.sol*__ contract.
+ERC721 is a standard interface for non-fungible tokens (NFT). It defines an Interface that must be imported and defined in a contract which allows minting NFTs. The interface can be found here [[ERC721 interface]](https://eips.ethereum.org/EIPS/eip-721). In the __*NFT.sol*__ contract that I proposed, the openzeppelin library has been used, which provides a ready to use ERC721 interface, this openzeppelin interface can be found here [[ERC721 interface, openzeppelin]](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol). One then needs to define our function that allows to trigger all operations needed when minting the NFT, this is the _*mintImage*_ function defined in line 43 of __*NFT.sol*__ contract:
+
+```solidity
+// mintImage
+function mintImage(string memory _imageCID) public {
+        // cannot mint the same image twice.
+        // IPFS will be used to store images returning a unique CID (image URI).
+        // Since CIDs are based on the image content, same image will always
+        // return same CID.
+        require(!imageAlreadyMinted[_imageCID], "image already minted");
+        uint256 newImageId = counter;
+
+        // store the image URI on the Blockchain
+        images.push(_imageCID);
+
+        // mint the image
+        _safeMint(msg.sender, newImageId);
+
+        // store the information that the image has been minted
+        imageAlreadyMinted[_imageCID] = true;
+
+        // store the image ID of the image in a mapping
+        imageIDs[_imageCID] = newImageId;
+
+        // transfer the ownership of the image
+        owner = payable(ownerOf(newImageId));
+
+        counter++;
+    }
+```
 
 
 
