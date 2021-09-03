@@ -8,7 +8,7 @@ To Thomas,
 
 # Minting NFTs (ERC721 tokens)
 
-ERC721 is a standard interface for non-fungible tokens (NFT). It defines an Interface that must be imported and defined in a contract which allows minting NFTs. The interface can be found here [[ERC721 interface]](https://eips.ethereum.org/EIPS/eip-721). In the __*NFT.sol*__ contract that I proposed, the openzeppelin library has been used, which provides a ready to use ERC721 interface, this openzeppelin interface can be found here [[ERC721 interface, openzeppelin]](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol). One then needs to define our function that allows to trigger all operations needed when minting the NFT, this is the _*mintImage*_ function defined in line 43 of __*NFT.sol*__ contract:
+ERC721 is a standard interface for non-fungible tokens (NFT). It defines an Interface that must be imported and defined in a contract which allows minting NFTs. The interface can be found here [[ERC721 interface]](https://eips.ethereum.org/EIPS/eip-721). In the __*NFT.sol*__ contract that I proposed, the openzeppelin library has been used, which provides a ready to use ERC721 interface, this openzeppelin interface can be found here [[ERC721 interface, openzeppelin]](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol). One then needs to define our function that allows to trigger all operations needed when minting the NFT, this is the _*mintImage*_ function defined in line 43 of __*NFT.sol*__ contract. The image can be replaced by a card.
 
 ```solidity
 // mintImage
@@ -39,6 +39,43 @@ function mintImage(string memory _imageCID) public {
     }
 ```
 
+# Rugby Game
+
+The rugby game that we discussed today is similar to one of my personal project that I called Pool game (see the contract _*PoolGame.sol*_). As you can see, I created a structure called VPool (line 12) that defines all properties of the Pool (which can be tought of as the card in our case). The *Card structure* could be defined as the VPool structure.
+
+```solidity
+// VPool structure
+struct VPool {
+        bool registered;
+        string ID;
+        uint256 price;
+        uint256 prize;
+        uint256 numberOfUsers;
+        uint256 numberOfVoters;
+        uint256 startRegistrationTime;
+        uint256 endRegistrationTime;
+        uint256 endTime;
+        mapping(address => bool) userVoted;
+        mapping(address => uint256) userVote;
+        mapping(uint256 => address) voterAddresses;
+        mapping(address => bool) userWithdrawed;
+    }
+    
+ // Card structure
+ struct Card {
+        bool created;
+        string position;  // or uint256
+        string firstname;
+        string lastname;
+        string club;
+        uint256 strength; // Force
+        uint256 endurance;
+        uint256 speed;    // vitesse
+        string scarcity;  // rareté
+        uint256 level;    // level
+        string season;    // saison
+    }
+```
 
 
 
