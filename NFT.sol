@@ -7,7 +7,7 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contr
 * Written by Samuel Gwlanold Ongala
 */
 
-contract ImageNFT is ERC721("WAW Marketplace", "WNFT") {
+contract NFT is ERC721("WAW Marketplace", "WNFT") {
     string[] public images;
 
     uint256 public counter;
