@@ -159,7 +159,16 @@ function randomNumbersGerator(
     }
 ```
 
-The above function generate an array of distinct random number, the length of this array is equal to the length of the initial array given as parameter. The _*_initialTab*_ array must be constructed such that to have 1 at index 0, 2 at index 1, 3 at index 2, ...., N at index N - 1. Where _*N*_ is the number of random number one would like to generate.
+The above function generates an array of distinct random numbers, the length of this array is equal to the length of the initial array given as parameter. The _*_initialTab*_ array must be constructed such that to have 1 at index 0, 2 at index 1, 3 at index 2, ...., N at index N - 1. Where _*N*_ is the number of random number one would like to generate.
+
+```solidity
+// the _initialTab for generating 5 random numbers
+_initialTab[0] = 1;
+_initialTab[1] = 2;
+_initialTab[2] = 3;
+_initialTab[3] = 4;
+_initialTab[4] = 5;
+```
 
 
 
