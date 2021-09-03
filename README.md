@@ -174,7 +174,7 @@ _initialTab[4] = 5;
 
 This video shows the generation of random numbers by using the function _*randomNumbersGerator*_ define above.
 
-[![IMAGE ALT TEXT HERE](https://github.com/Edoumou/set-in-stone/blob/main/youtubeCover.png)](https://youtu.be/oarR6yuxyyE)
+[![IMAGE ALT TEXT HERE](https://github.com/Edoumou/set-in-stone/blob/main/cover.png)](https://youtu.be/oarR6yuxyyE)
 
 
 
