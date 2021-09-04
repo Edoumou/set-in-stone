@@ -80,7 +80,7 @@ contract RugbyBlockchain is ERC721("Set In Stone", "SIS") {
     )
         public payable
     {
-        // require the caller to have registered before (to have secured their wallet before)
+        // require the caller to have been registered before (to have secured their wallet before)
         require(msg.sender == users[msg.sender].userAddress, "Not allowed");
         
         uint256 newCardID = counter;
@@ -170,8 +170,21 @@ contract RugbyBlockchain is ERC721("Set In Stone", "SIS") {
     ) 
         public payable returns (uint256) 
     {
+        // require the caller to have registered before (to have secured their wallet before)
+        require(msg.sender == users[msg.sender].userAddress, "Not allowed");
+        
         // all requires must be set here
         require(msg.value >= 50000000000000000, "Not enough ETH");  // opening a booster costs 0.05 ETH
+        
+        // mints the cards
+        _safeMint(msg.sender, counter);
+        
+        // store the card ID in a mapping
+        users[msg.sender].cardID = counter;
+        users[msg.sender].CardstrID = _cardID;
+        
+        // transfer the ownership of the image to the minter
+        cardOwners[_cardID] = ownerOf(counter);
         
         //== sets the card properties
         cards[_cardID].ID = _cardID;
@@ -209,6 +222,8 @@ contract RugbyBlockchain is ERC721("Set In Stone", "SIS") {
         // Opening a booster costs 0.05 ETH
         (bool success, ) = depositAddress.call{value: msg.value}("");
         require(success);
+        
+        counter++;
 
         return _initialTab[2];
     }
