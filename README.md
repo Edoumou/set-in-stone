@@ -140,7 +140,7 @@ The generation of random number in solidity is an active field of research. Two 
         uint256 k = _initialTab.length;
 
         // generate random numbers
-        // be aware that block.timestamp can be alter by miners.
+        // be aware that block.timestamp can be altered by miners.
         for (uint256 i = 0; i < k; i++) {
             uint256 randNum = (uint256(
                 keccak256(abi.encodePacked(block.timestamp, _cardID, _initialTab[i]))
