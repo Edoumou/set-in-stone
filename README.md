@@ -176,9 +176,11 @@ This video shows the generation of random numbers by using the function _*random
 
 [![IMAGE ALT TEXT HERE](https://github.com/Edoumou/set-in-stone/blob/main/cover.png)](https://youtu.be/oarR6yuxyyE)
 
+# Rugby Blockchain game
 
+The _*RugbyBlockchain.sol*_ smart contract allows to create Rugby player cards as ERC721 tokens (NFT). A card contains some properties such as its fistname, speed, etc. A use can get a card either by minting it through the _*mintCard*_ function which takes all properties needed to define the card, or by exchanging their card with other users card or by opening a booster. In the case of a booster, five cards are avaible and one of them is selected randomly. Opening a booster costs 0.05 ETH, so the user must pay this amount before he can open a booster, alsothe scarcity of the card is defined according to the card that is selected.
 
-
+[![IMAGE ALT TEXT HERE](https://github.com/Edoumou/set-in-stone/blob/main/rb.png)](https://www.youtube.com/watch?v=W1jso0J97NU)
 
 
 
